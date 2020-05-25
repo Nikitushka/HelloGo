@@ -7,11 +7,14 @@ import (
 )
 
 func main() {
+	// declared variable
 	var str string
 
+	// set flag to point to variable
 	flag.StringVar(&str, "s", "", "String to rot13")
 	flag.Parse()
 
+	// check that variable is not empty, if it is print a message to check help and fill flag with string
 	if str != "" {
 		rotified := strings.Map(rot13, str)
 		fmt.Println("\nString to encode:", str)
@@ -21,6 +24,9 @@ func main() {
 	}
 }
 
+// function that takes a rune and adds 13 to it using modulo
+// made with the help of golang docs strings.Map example:
+// https://golang.org/pkg/strings/#Map
 func rot13(r rune) rune{
 	if r >= 'a' && r <= 'z' {
 		return 'a' + (r -'a' + 13) % 26
